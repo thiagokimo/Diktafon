@@ -8,9 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import io.kimo.diktafon.view.RecordListView;
 public class RecordListFragment extends Fragment implements RecordListView {
 
     private RecyclerView recyclerView;
-    private ProgressBar progressBar;
+    private ProgressWheel progressBar;
     private TextView emptyMessage;
     private RecordListAdapter recordListAdapter;
 
@@ -56,7 +57,7 @@ public class RecordListFragment extends Fragment implements RecordListView {
 
     private void mapGUI(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+        progressBar = (ProgressWheel) view.findViewById(R.id.progressbar);
         emptyMessage = (TextView) view.findViewById(R.id.empty_feedback);
     }
 

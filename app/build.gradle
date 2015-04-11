@@ -26,5 +26,6 @@ dependencies {
     compile 'com.fabiendevos:nanotasks:1.1.0'
     compile 'com.melnykov:floatingactionbutton:1.2.0'
     compile 'uk.co.chrisjenx:calligraphy:2.0.2'
+    compile 'com.pnikosis:materialish-progress:1.5'
     compile 'com.github.ozodrukh:CircularReveal:1.0.5@aar'
 }

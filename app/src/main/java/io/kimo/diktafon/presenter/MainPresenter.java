@@ -33,13 +33,13 @@ public class MainPresenter {
     }
 
     private void startRecording() {
-        mainView.showPauseButton();
         mainView.showVoiceRecordView();
+        mainView.showPauseButton();
     }
 
     private void pauseRecording() {
-        mainView.showRecordButton();
         mainView.hideVoiceRecordView();
+        mainView.showRecordButton();
     }
 
     public SupportAnimator getAnimator(final View origin, final View container, final boolean show) {
@@ -73,7 +73,7 @@ public class MainPresenter {
                 origin.setEnabled(true);
 
                 if(!show) {
-                    container.setVisibility(View.GONE);
+                    container.setVisibility(View.INVISIBLE);
                 }
             }
             @Override

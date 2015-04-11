@@ -32,14 +32,14 @@ public class RecordListPresenter {
         Tasks.executeInBackground(context, new BackgroundWork<List<RecordModel>>() {
             @Override
             public List<RecordModel> doInBackground() throws Exception {
-                return generateRandomRecords(12);
+                return generateRandomRecords(100);
             }
         }, new Completion<List<RecordModel>>() {
             @Override
             public void onSuccess(Context context, List<RecordModel> recordModels) {
                 view.hideLoading();
 
-                if(recordModels.isEmpty()) {
+                if (recordModels.isEmpty()) {
                     view.showEmpty("There are no local records.");
                 } else {
                     view.renderRecordList(recordModels);

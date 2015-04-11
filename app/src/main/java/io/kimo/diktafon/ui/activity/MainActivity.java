@@ -68,12 +68,22 @@ public class MainActivity extends ActionBarActivity implements MainView {
 
     @Override
     public void showVoiceRecordView() {
-        mainPresenter.getAnimator(floatingActionButton, voiceRecordContainer, true).start();
+        voiceRecordContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                mainPresenter.getAnimator(floatingActionButton, voiceRecordContainer, true).start();
+            }
+        });
     }
 
     @Override
     public void hideVoiceRecordView() {
-        mainPresenter.getAnimator(floatingActionButton, voiceRecordContainer, false).start();
+        voiceRecordContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                mainPresenter.getAnimator(floatingActionButton, voiceRecordContainer, false).start();
+            }
+        });
     }
 
     @Override
