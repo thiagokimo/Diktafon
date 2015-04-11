@@ -25,6 +25,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottom_bar"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 

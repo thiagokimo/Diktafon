@@ -5,5 +5,6 @@ package io.kimo.diktafon.view;
  */
 public interface VoiceRecorderView {
 
-
+    void startCounter();
+    void pauseCounter();
 }

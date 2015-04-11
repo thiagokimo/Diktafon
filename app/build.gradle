@@ -25,4 +25,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile 'com.fabiendevos:nanotasks:1.1.0'
     compile 'com.melnykov:floatingactionbutton:1.2.0'
+    compile 'uk.co.chrisjenx:calligraphy:2.0.2'
+    compile 'com.github.ozodrukh:CircularReveal:1.0.5@aar'
 }

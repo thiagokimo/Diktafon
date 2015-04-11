@@ -1,4 +1,4 @@
-package io.kimo.diktafon;
+package io.kimo.diktafon.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +15,7 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.kimo.diktafon.R;
 import io.kimo.diktafon.model.RecordModel;
 import io.kimo.diktafon.presenter.RecordListPresenter;
 import io.kimo.diktafon.view.RecordListView;

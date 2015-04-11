@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<io.codetail.widget.RevealFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="io.kimo.diktafon.RecordListFragment"
+            android:name="io.kimo.diktafon.ui.fragment.RecordListFragment"
             android:layout_gravity="center"
             tools:layout="@layout/fragment_list" />
     </FrameLayout>
@@ -27,11 +27,10 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="io.kimo.diktafon.VoiceRecorderFragment"
+            android:name="io.kimo.diktafon.ui.fragment.VoiceRecorderFragment"
             android:id="@+id/voice_record"
             android:layout_gravity="center"
             tools:layout="@layout/fragment_voice_record" />
-
     </FrameLayout>
 
     <com.melnykov.fab.FloatingActionButton
@@ -44,4 +43,4 @@
         fab:fab_colorNormal="@color/primary"
         fab:fab_colorPressed="@color/primaryDark"
         fab:fab_colorRipple="@color/primary" />
-</FrameLayout>
+</io.codetail.widget.RevealFrameLayout>

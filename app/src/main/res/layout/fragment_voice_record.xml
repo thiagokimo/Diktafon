@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/primary">
 
     <TextView
@@ -13,14 +16,34 @@
         android:layout_height="wrap_content" />
 
     <Chronometer
+        android:id="@+id/chronometer"
+        android:gravity="center"
+        android:layout_marginLeft="52dp"
+        android:layout_marginRight="52dp"
+        fontPath="fonts/Roboto-Thin.ttf"
         android:layout_marginTop="223dp"
         android:textColor="#fff"
         android:textSize="70sp"
-        android:format="HH:MM:SS"
         android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="51dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-
+    <ImageView
+        android:layout_marginRight="51dp"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
