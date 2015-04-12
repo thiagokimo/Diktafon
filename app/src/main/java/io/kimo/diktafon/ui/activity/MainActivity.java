@@ -13,11 +13,12 @@ import com.melnykov.fab.FloatingActionButton;
 
 import io.kimo.diktafon.R;
 import io.kimo.diktafon.presenter.MainPresenter;
+import io.kimo.diktafon.ui.fragment.VoiceRecorderFragment;
 import io.kimo.diktafon.view.MainView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
-public class MainActivity extends ActionBarActivity implements MainView {
+public class MainActivity extends ActionBarActivity implements MainView, VoiceRecorderFragment.VoiceRecorderButtonListener {
 
     private Toolbar toolbar;
     private FrameLayout voiceRecordContainer;
@@ -61,7 +62,7 @@ public class MainActivity extends ActionBarActivity implements MainView {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainPresenter.onFABClicked();
+                mainPresenter.startRecording();
             }
         });
     }
@@ -96,5 +97,15 @@ public class MainActivity extends ActionBarActivity implements MainView {
     public void showPauseButton() {
         floatingActionButton.setColorNormal(Color.WHITE);
         floatingActionButton.setImageResource(R.drawable.fab_pause);
+    }
+
+    @Override
+    public void onDeleteButtonClicked() {
+        mainPresenter.onDeleteRecord();
+    }
+
+    @Override
+    public void checkButtonClicked() {
+
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,21 +29,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <ImageView
-        android:layout_marginBottom="30dp"
+    <ImageButton
+        android:id="@+id/delete"
+        android:layout_marginBottom="36dp"
         android:layout_marginLeft="51dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/delete"
+        android:background="@drawable/selector_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ImageView
+    <ImageButton
+        android:background="@drawable/selector_check"
         android:layout_marginRight="51dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="36dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

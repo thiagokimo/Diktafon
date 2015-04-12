@@ -7,4 +7,5 @@ public interface VoiceRecorderView {
 
     void startCounter();
     void pauseCounter();
+    void resetCounter();
 }

@@ -1,5 +1,6 @@
 package io.kimo.diktafon.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
@@ -18,8 +19,25 @@ import io.kimo.diktafon.view.VoiceRecorderView;
  */
 public class VoiceRecorderFragment extends Fragment implements VoiceRecorderView {
 
+    public interface VoiceRecorderButtonListener {
+        void onDeleteButtonClicked();
+        void checkButtonClicked();
+    }
+
+    private VoiceRecorderButtonListener voiceRecorderButtonListener;
+
     private VoiceRecorderPresenter presenter;
     private Chronometer chronometer;
+    private View deleteButton;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        if(activity instanceof VoiceRecorderButtonListener) {
+            voiceRecorderButtonListener = (VoiceRecorderButtonListener) activity;
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,10 +63,18 @@ public class VoiceRecorderFragment extends Fragment implements VoiceRecorderView
 
     private void mapGUI(View view) {
         chronometer = (Chronometer) view.findViewById(R.id.chronometer);
+        deleteButton = view.findViewById(R.id.delete);
     }
 
     private void configureGUI() {
         chronometer.setBase(SystemClock.elapsedRealtime());
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                voiceRecorderButtonListener.onDeleteButtonClicked();
+                presenter.cancelRecord();
+            }
+        });
     }
 
     @Override
@@ -59,5 +85,10 @@ public class VoiceRecorderFragment extends Fragment implements VoiceRecorderView
     @Override
     public void pauseCounter() {
         chronometer.stop();
+    }
+
+    @Override
+    public void resetCounter() {
+        chronometer.setBase(SystemClock.elapsedRealtime());
     }
 }

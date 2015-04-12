@@ -12,34 +12,23 @@ import io.kimo.diktafon.view.MainView;
  */
 public class MainPresenter {
 
-    public static final int RECORDING = 0;
-    public static final int NOT_RECORDING = 1;
-
     private MainView mainView;
-    private int FABState = NOT_RECORDING;
 
     public MainPresenter(MainView mainView) {
         this.mainView = mainView;
     }
 
-    public void onFABClicked() {
-        if (FABState == NOT_RECORDING) {
-            startRecording();
-            FABState = RECORDING;
-        } else {
-            pauseRecording();
-            FABState = NOT_RECORDING;
-        }
-    }
-
-    private void startRecording() {
+    public void startRecording() {
         mainView.showVoiceRecordView();
         mainView.showPauseButton();
     }
 
     private void pauseRecording() {
         mainView.hideVoiceRecordView();
-        mainView.showRecordButton();
+    }
+
+    public void onDeleteRecord() {
+        pauseRecording();
     }
 
     public SupportAnimator getAnimator(final View origin, final View container, final boolean show) {
@@ -65,6 +54,7 @@ public class MainPresenter {
 
                 if (show) {
                     container.setVisibility(View.VISIBLE);
+                    mainView.showPauseButton();
                 }
             }
             @Override
@@ -74,6 +64,7 @@ public class MainPresenter {
 
                 if(!show) {
                     container.setVisibility(View.INVISIBLE);
+                    mainView.showRecordButton();
                 }
             }
             @Override

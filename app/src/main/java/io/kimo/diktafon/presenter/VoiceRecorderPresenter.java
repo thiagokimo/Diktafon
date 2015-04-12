@@ -16,4 +16,9 @@ public class VoiceRecorderPresenter {
     public void assembleView() {
         view.startCounter();
     }
+
+    public void cancelRecord() {
+        view.pauseCounter();
+        view.resetCounter();
+    }
 }
