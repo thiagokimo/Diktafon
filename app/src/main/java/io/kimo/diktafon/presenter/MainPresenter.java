@@ -21,14 +21,16 @@ public class MainPresenter {
     public void startRecording() {
         mainView.showVoiceRecordView();
         mainView.showPauseButton();
+        mainView.disableRecordList();
     }
 
-    private void pauseRecording() {
+    private void stopRecording() {
         mainView.hideVoiceRecordView();
+        mainView.enableRecordList();
     }
 
     public void onDeleteRecord() {
-        pauseRecording();
+        stopRecording();
     }
 
     public SupportAnimator getAnimator(final View origin, final View container, final boolean show) {

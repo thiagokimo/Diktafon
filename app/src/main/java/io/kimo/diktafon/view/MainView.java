@@ -11,4 +11,7 @@ public interface MainView {
     void showRecordButton();
     void showPauseButton();
 
+    void enableRecordList();
+    void disableRecordList();
+
 }

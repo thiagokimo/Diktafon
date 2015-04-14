@@ -21,7 +21,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class MainActivity extends ActionBarActivity implements MainView, VoiceRecorderFragment.VoiceRecorderButtonListener {
 
     private Toolbar toolbar;
-    private FrameLayout voiceRecordContainer;
+    private FrameLayout voiceRecordContainer, recordListContainer;
     private FloatingActionButton floatingActionButton;
 
     private MainPresenter mainPresenter;
@@ -52,6 +52,7 @@ public class MainActivity extends ActionBarActivity implements MainView, VoiceRe
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         voiceRecordContainer = (FrameLayout) findViewById(R.id.voice_record_container);
+        recordListContainer = (FrameLayout) findViewById(R.id.records_list_container);
     }
 
     private void configureGUI() {
@@ -97,6 +98,16 @@ public class MainActivity extends ActionBarActivity implements MainView, VoiceRe
     public void showPauseButton() {
         floatingActionButton.setColorNormal(Color.WHITE);
         floatingActionButton.setImageResource(R.drawable.fab_pause);
+    }
+
+    @Override
+    public void enableRecordList() {
+        voiceRecordContainer.setClickable(false);
+    }
+
+    @Override
+    public void disableRecordList() {
+        voiceRecordContainer.setClickable(true);
     }
 
     @Override
