@@ -1,4 +1,4 @@
-package io.kimo.diktafon.model;
+package io.kimo.diktafon.presentation.model;
 
 /**
  * Created by Kimo on 3/26/15.

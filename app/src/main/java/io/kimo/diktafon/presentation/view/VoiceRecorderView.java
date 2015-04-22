@@ -1,4 +1,4 @@
-package io.kimo.diktafon.view;
+package io.kimo.diktafon.presentation.view;
 
 /**
  * VoiceRecorder functionalities

@@ -12,7 +12,7 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="io.kimo.diktafon.ui.fragment.RecordListFragment"
+            android:name="io.kimo.diktafon.presentation.view.ui.fragment.RecordListFragment"
             android:layout_gravity="center"
             tools:layout="@layout/fragment_list" />
     </FrameLayout>
@@ -27,7 +27,7 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="io.kimo.diktafon.ui.fragment.VoiceRecorderFragment"
+            android:name="io.kimo.diktafon.presentation.view.ui.fragment.VoiceRecorderFragment"
             android:id="@+id/voice_record"
             android:layout_gravity="center"
             tools:layout="@layout/fragment_voice_record" />

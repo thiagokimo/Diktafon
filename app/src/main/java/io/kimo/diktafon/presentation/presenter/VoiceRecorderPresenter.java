@@ -1,6 +1,6 @@
-package io.kimo.diktafon.presenter;
+package io.kimo.diktafon.presentation.presenter;
 
-import io.kimo.diktafon.view.VoiceRecorderView;
+import io.kimo.diktafon.presentation.view.VoiceRecorderView;
 
 /**
  * Responsible to control the main funcionalities of the voice recorder view

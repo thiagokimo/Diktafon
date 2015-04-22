@@ -1,4 +1,4 @@
-package io.kimo.diktafon.ui.fragment;
+package io.kimo.diktafon.presentation.view.ui.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 
 import io.kimo.diktafon.R;
-import io.kimo.diktafon.presenter.VoiceRecorderPresenter;
-import io.kimo.diktafon.view.VoiceRecorderView;
+import io.kimo.diktafon.presentation.presenter.VoiceRecorderPresenter;
+import io.kimo.diktafon.presentation.view.VoiceRecorderView;
 
 /**
  * Fragment with the voice recorder timer

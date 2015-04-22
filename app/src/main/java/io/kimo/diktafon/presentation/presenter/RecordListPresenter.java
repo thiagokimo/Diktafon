@@ -1,16 +1,16 @@
-package io.kimo.diktafon.presenter;
+package io.kimo.diktafon.presentation.presenter;
 
 import android.content.Context;
 
-import com.nanotasks.BackgroundWork;
 import com.nanotasks.Completion;
 import com.nanotasks.Tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.kimo.diktafon.model.RecordModel;
-import io.kimo.diktafon.view.RecordListView;
+import io.kimo.diktafon.domain.GetLocalRecordings;
+import io.kimo.diktafon.presentation.model.RecordModel;
+import io.kimo.diktafon.presentation.view.RecordListView;
 
 /**
  * Handles the display logic of the RecordListView
@@ -29,12 +29,7 @@ public class RecordListPresenter {
         hideAllViews();
         view.showLoading();
 
-        Tasks.executeInBackground(context, new BackgroundWork<List<RecordModel>>() {
-            @Override
-            public List<RecordModel> doInBackground() throws Exception {
-                return generateRandomRecords(100);
-            }
-        }, new Completion<List<RecordModel>>() {
+        Tasks.executeInBackground(context, new GetLocalRecordings(), new Completion<List<RecordModel>>() {
             @Override
             public void onSuccess(Context context, List<RecordModel> recordModels) {
                 view.hideLoading();

@@ -1,4 +1,4 @@
-package io.kimo.diktafon.ui.activity;
+package io.kimo.diktafon.presentation.view.ui.activity;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,9 +12,9 @@ import android.widget.FrameLayout;
 import com.melnykov.fab.FloatingActionButton;
 
 import io.kimo.diktafon.R;
-import io.kimo.diktafon.presenter.MainPresenter;
-import io.kimo.diktafon.ui.fragment.VoiceRecorderFragment;
-import io.kimo.diktafon.view.MainView;
+import io.kimo.diktafon.presentation.presenter.MainPresenter;
+import io.kimo.diktafon.presentation.view.ui.fragment.VoiceRecorderFragment;
+import io.kimo.diktafon.presentation.view.MainView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 

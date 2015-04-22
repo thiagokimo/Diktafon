@@ -1,8 +1,8 @@
-package io.kimo.diktafon.view;
+package io.kimo.diktafon.presentation.view;
 
 import java.util.List;
 
-import io.kimo.diktafon.model.RecordModel;
+import io.kimo.diktafon.presentation.model.RecordModel;
 
 /**
  * RecordListView functionalities

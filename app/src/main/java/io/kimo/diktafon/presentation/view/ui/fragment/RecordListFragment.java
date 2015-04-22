@@ -1,4 +1,4 @@
-package io.kimo.diktafon.ui.fragment;
+package io.kimo.diktafon.presentation.view.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.kimo.diktafon.R;
-import io.kimo.diktafon.model.RecordModel;
-import io.kimo.diktafon.presenter.RecordListPresenter;
-import io.kimo.diktafon.view.RecordListView;
+import io.kimo.diktafon.presentation.model.RecordModel;
+import io.kimo.diktafon.presentation.presenter.RecordListPresenter;
+import io.kimo.diktafon.presentation.view.RecordListView;
 
 /**
  * Fragment that displays a list of records

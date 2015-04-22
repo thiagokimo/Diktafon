@@ -1,11 +1,11 @@
-package io.kimo.diktafon.presenter;
+package io.kimo.diktafon.presentation.presenter;
 
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
-import io.kimo.diktafon.view.MainView;
+import io.kimo.diktafon.presentation.view.MainView;
 
 /**
  * Presenter of the main view
