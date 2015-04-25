@@ -6,31 +6,52 @@ import android.view.animation.LinearInterpolator;
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
 import io.kimo.diktafon.presentation.view.MainView;
+import io.kimo.diktafon.presentation.view.ui.fragment.VoiceRecorderFragment;
 
 /**
  * Presenter of the main view
  */
 public class MainPresenter {
 
-    private MainView mainView;
+    public static final int STATE_NOT_RECORDING = 0;
+    public static final int STATE_RECORDING = 1;
+    public static final int STATE_PAUSED = 2;
 
-    public MainPresenter(MainView mainView) {
+    private int currentState = STATE_NOT_RECORDING;
+
+    private MainView mainView;
+    private VoiceRecorderFragment voiceRecorderFragment;
+
+    public MainPresenter(MainView mainView, VoiceRecorderFragment voiceRecorderFragment) {
         this.mainView = mainView;
+        this.voiceRecorderFragment = voiceRecorderFragment;
     }
 
-    public void startRecording() {
+    public void performFABClick() {
+        if(currentState == STATE_NOT_RECORDING) {
+            displayVoiceRecorder();
+            voiceRecorderFragment.initializeRecording();
+            currentState = STATE_RECORDING;
+        } else {
+
+        }
+    }
+
+    private void displayVoiceRecorder() {
         mainView.showVoiceRecordView();
         mainView.showPauseButton();
         mainView.disableRecordList();
     }
 
-    private void stopRecording() {
+    private void hideVoiceRecorderView() {
         mainView.hideVoiceRecordView();
         mainView.enableRecordList();
     }
 
     public void onDeleteRecord() {
-        stopRecording();
+        hideVoiceRecorderView();
+        voiceRecorderFragment.finalizeRecording();
+        currentState = STATE_NOT_RECORDING;
     }
 
     public SupportAnimator getAnimator(final View origin, final View container, final boolean show) {

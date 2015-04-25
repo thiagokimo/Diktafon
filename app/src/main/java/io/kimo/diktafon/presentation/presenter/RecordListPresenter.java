@@ -5,7 +5,6 @@ import android.content.Context;
 import com.nanotasks.Completion;
 import com.nanotasks.Tasks;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.kimo.diktafon.domain.GetLocalRecordings;
@@ -56,20 +55,4 @@ public class RecordListPresenter {
         view.hideLoading();
         view.hideEmpty();
     }
-
-    private List<RecordModel> generateRandomRecords(int numberOfRecords) {
-        List<RecordModel> recordModels = new ArrayList<>();
-
-        for(int i = 0; i < numberOfRecords; i++) {
-            RecordModel record = new RecordModel();
-
-            record.setTitle("Record #" + i);
-            record.setLenght("00:0"+i);
-
-            recordModels.add(record);
-        }
-
-        return recordModels;
-    }
-
 }

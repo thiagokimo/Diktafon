@@ -1,9 +1,8 @@
 package io.kimo.diktafon.presentation.view.ui.activity;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
@@ -13,23 +12,24 @@ import com.melnykov.fab.FloatingActionButton;
 
 import io.kimo.diktafon.R;
 import io.kimo.diktafon.presentation.presenter.MainPresenter;
-import io.kimo.diktafon.presentation.view.ui.fragment.VoiceRecorderFragment;
 import io.kimo.diktafon.presentation.view.MainView;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.kimo.diktafon.presentation.view.ui.fragment.VoiceRecorderFragment;
 
 
-public class MainActivity extends ActionBarActivity implements MainView, VoiceRecorderFragment.VoiceRecorderButtonListener {
+public class MainActivity extends AppCompatActivity implements MainView, VoiceRecorderFragment.VoiceRecorderButtonListener {
 
     private Toolbar toolbar;
     private FrameLayout voiceRecordContainer, recordListContainer;
     private FloatingActionButton floatingActionButton;
 
+    private VoiceRecorderFragment voiceRecorderFragment;
+
     private MainPresenter mainPresenter;
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
+//    @Override
+//    protected void attachBaseContext(Context newBase) {
+//        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +53,19 @@ public class MainActivity extends ActionBarActivity implements MainView, VoiceRe
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         voiceRecordContainer = (FrameLayout) findViewById(R.id.voice_record_container);
         recordListContainer = (FrameLayout) findViewById(R.id.records_list_container);
+
+        voiceRecorderFragment = (VoiceRecorderFragment) getSupportFragmentManager().findFragmentById(R.id.voice_recorder);
     }
 
     private void configureGUI() {
-        mainPresenter = new MainPresenter(this);
+        mainPresenter = new MainPresenter(this, voiceRecorderFragment);
 
         setSupportActionBar(toolbar);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainPresenter.startRecording();
+                mainPresenter.performFABClick();
             }
         });
     }
@@ -111,12 +113,12 @@ public class MainActivity extends ActionBarActivity implements MainView, VoiceRe
     }
 
     @Override
-    public void onDeleteButtonClicked() {
+    public void onTrashButtonClicked() {
         mainPresenter.onDeleteRecord();
     }
 
     @Override
-    public void checkButtonClicked() {
+    public void onCheckButtonClicked() {
 
     }
 }

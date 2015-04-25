@@ -20,8 +20,8 @@ import io.kimo.diktafon.presentation.view.VoiceRecorderView;
 public class VoiceRecorderFragment extends Fragment implements VoiceRecorderView {
 
     public interface VoiceRecorderButtonListener {
-        void onDeleteButtonClicked();
-        void checkButtonClicked();
+        void onTrashButtonClicked();
+        void onCheckButtonClicked();
     }
 
     private VoiceRecorderButtonListener voiceRecorderButtonListener;
@@ -58,7 +58,6 @@ public class VoiceRecorderFragment extends Fragment implements VoiceRecorderView
         super.onActivityCreated(savedInstanceState);
 
         presenter = new VoiceRecorderPresenter(this);
-        presenter.assembleView();
     }
 
     private void mapGUI(View view) {
@@ -67,14 +66,21 @@ public class VoiceRecorderFragment extends Fragment implements VoiceRecorderView
     }
 
     private void configureGUI() {
-        chronometer.setBase(SystemClock.elapsedRealtime());
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                voiceRecorderButtonListener.onDeleteButtonClicked();
+                voiceRecorderButtonListener.onTrashButtonClicked();
                 presenter.cancelRecord();
             }
         });
+    }
+
+    public void initializeRecording() {
+        presenter.startRecording();
+    }
+
+    public void finalizeRecording() {
+        presenter.cancelRecord();
     }
 
     @Override

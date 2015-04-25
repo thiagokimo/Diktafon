@@ -1,19 +1,18 @@
 package io.kimo.diktafon.presentation.view.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.kimo.diktafon.R;
@@ -26,7 +25,7 @@ import io.kimo.diktafon.presentation.view.RecordListView;
  */
 public class RecordListFragment extends Fragment implements RecordListView {
 
-    private RecyclerView recyclerView;
+    private ListView listView;
     private ProgressWheel progressBar;
     private TextView emptyMessage;
     private RecordListAdapter recordListAdapter;
@@ -56,7 +55,7 @@ public class RecordListFragment extends Fragment implements RecordListView {
     }
 
     private void mapGUI(View view) {
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
+        listView = (ListView) view.findViewById(R.id.list);
         progressBar = (ProgressWheel) view.findViewById(R.id.progressbar);
         emptyMessage = (TextView) view.findViewById(R.id.empty_feedback);
     }
@@ -65,11 +64,8 @@ public class RecordListFragment extends Fragment implements RecordListView {
 
         getActivity().setTitle("Recordings");
 
-        recordListAdapter = new RecordListAdapter();
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(recordListAdapter);
+        recordListAdapter = new RecordListAdapter(getActivity());
+        listView.setAdapter(recordListAdapter);
     }
 
     @Override
@@ -84,12 +80,12 @@ public class RecordListFragment extends Fragment implements RecordListView {
 
     @Override
     public void showList() {
-        recyclerView.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideList() {
-        recyclerView.setVisibility(View.GONE);
+        listView.setVisibility(View.GONE);
     }
 
     @Override
@@ -113,12 +109,16 @@ public class RecordListFragment extends Fragment implements RecordListView {
         emptyMessage.setVisibility(View.GONE);
     }
 
-    private class RecordListAdapter extends RecyclerView.Adapter<RecordListAdapter.ViewHolder> {
+    private class RecordListAdapter extends BaseAdapter {
+        private List<RecordModel> data;
+        private LayoutInflater layoutInflater;
 
-        private List<RecordModel> data = new ArrayList<>();
+        public RecordListAdapter(Context context) {
+            layoutInflater = LayoutInflater.from(context);
+        }
 
-        public void setData(List<RecordModel> newData) {
-            this.data = newData;
+        public void setData(List<RecordModel> data) {
+            this.data = data;
             notifyDataSetChanged();
         }
 
@@ -127,36 +127,82 @@ public class RecordListFragment extends Fragment implements RecordListView {
             notifyDataSetChanged();
         }
 
-        @Override
-        public RecordListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_record, viewGroup, false);
-            return new ViewHolder(view);
-        }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            RecordModel record = data.get(position);
-
-            holder.title.setText(record.getTitle());
-            holder.subtitle.setText(record.getLenght());
-        }
-
-        @Override
-        public int getItemCount() {
+        public int getCount() {
             return data == null ? 0 : data.size();
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder {
+        @Override
+        public RecordModel getItem(int position) {
+            return data.get(position);
+        }
 
-            private TextView title, subtitle;
-            private ToggleButton button;
+        @Override
+        public long getItemId(int position) {
+            return getItem(position).hashCode();
+        }
 
-            public ViewHolder(View itemView) {
-                super(itemView);
-                title = (TextView) itemView.findViewById(R.id.title);
-                subtitle = (TextView) itemView.findViewById(R.id.subtitle);
-                button = (ToggleButton) itemView.findViewById(R.id.button);
-            }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            RecordModel recordModel = getItem(position);
+
+            convertView = layoutInflater.inflate(R.layout.item_record, parent, false);
+            TextView title = (TextView) convertView.findViewById(R.id.title);
+            TextView subtitle = (TextView) convertView.findViewById(R.id.subtitle);
+
+            title.setText(recordModel.getTitle());
+            subtitle.setText(recordModel.getLenght());
+
+            return convertView;
         }
     }
+
+//    private class RecordListAdapter extends RecyclerView.Adapter<RecordListAdapter.ViewHolder> {
+//
+//        private List<RecordModel> data = new ArrayList<>();
+//
+//        public void setData(List<RecordModel> newData) {
+//            this.data = newData;
+//            notifyDataSetChanged();
+//        }
+//
+//        public void clearData() {
+//            this.data.clear();
+//            notifyDataSetChanged();
+//        }
+//
+//        @Override
+//        public RecordListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+//            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_record, viewGroup, false);
+//            return new ViewHolder(view);
+//        }
+//
+//        @Override
+//        public void onBindViewHolder(ViewHolder holder, int position) {
+//            RecordModel record = data.get(position);
+//
+//            holder.title.setText(record.getTitle());
+//            holder.subtitle.setText(record.getLenght());
+//        }
+//
+//        @Override
+//        public int getItemCount() {
+//            return data == null ? 0 : data.size();
+//        }
+//
+//        public class ViewHolder extends RecyclerView.ViewHolder {
+//
+//            private TextView title, subtitle;
+//            private ToggleButton button;
+//
+//            public ViewHolder(View itemView) {
+//                super(itemView);
+//                title = (TextView) itemView.findViewById(R.id.title);
+//                subtitle = (TextView) itemView.findViewById(R.id.subtitle);
+//                button = (ToggleButton) itemView.findViewById(R.id.button);
+//            }
+//        }
+//    }
 }

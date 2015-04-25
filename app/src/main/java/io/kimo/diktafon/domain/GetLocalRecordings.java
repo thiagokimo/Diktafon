@@ -28,4 +28,19 @@ public class GetLocalRecordings implements BackgroundWork<List<RecordModel>> {
 
         return recordModels;
     }
+
+    private List<RecordModel> generateRandomRecords(int numberOfRecords) {
+        List<RecordModel> recordModels = new ArrayList<>();
+
+        for(int i = 0; i < numberOfRecords; i++) {
+            RecordModel record = new RecordModel();
+
+            record.setTitle("Record #" + i);
+            record.setLenght("00:0"+i);
+
+            recordModels.add(record);
+        }
+
+        return recordModels;
+    }
 }
